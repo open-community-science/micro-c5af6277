@@ -1,0 +1,597 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Ice Chamber Experiment Metagenome},
+  pdfkeywords={microbial ecology, metagenomics},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Ice Chamber Experiment Metagenome}
+\author{}
+\date{2026-07-22}
+\begin{document}
+\maketitle
+\begin{abstract}
+Sea ice and its associated frost flowers host taxonomically and
+functionally distinct microbial communities that play important roles in
+polar biogeochemical cycles, yet field-based studies of these systems
+are complicated by confounding regional geography and large-scale ocean
+and atmospheric circulation, which obscure the local drivers of
+microbial colonization (Priest et al., 2023). To address this
+limitation, we used the Roland von Glasow Air-Sea-Ice Chamber, a large
+laboratory-scale sea ice mesocosm at the University of Grenoble Alpes,
+to characterize bacterial and eukaryotic community assembly across frost
+flower, brine, ice matrix, and seawater niches under controlled
+conditions. A total of 124 SRA runs from 45 samples were processed using
+an amplicon sequence variant (ASV)-based bioinformatics pipeline,
+including quality filtering, taxonomic classification, and functional
+annotation. Of 84 samples subjected to ASV inference, an initial 860,222
+reads were quality filtered to 519,769 retained reads (60.4\%
+retention). Analysis of the resulting community profiles revealed
+taxonomic and functional partitioning of bacteria into distinct niches
+consistent with niche-based selection, supported by the emergence of
+archetypal sea-ice bacterial taxa that were not detected in the seeding
+seawater. In contrast, eukaryotic community composition remained largely
+consistent across the ice-brine-seawater profile, suggesting that
+eukaryotic distribution in this system was governed more by stochastic
+processes than by deterministic niche selection. Bacterial enrichment
+within the ice matrix proceeded at a rate comparable to that reported in
+prior field-based observations, despite minimal diatom representation in
+this experimental system. These findings demonstrate that controlled
+mesocosm experiments can effectively isolate local physicochemical
+drivers of microbial colonization from confounding environmental
+variability, and support a model in which bacterial and eukaryotic
+communities in sea ice are shaped by distinct assembly
+processes---niche-based selection and ecological stochasticity,
+respectively.
+\end{abstract}
+
+
+\subsection{Introduction}\label{introduction}
+
+\section{Introduction}\label{introduction-1}
+
+Sea ice and its associated frost flowers---delicate, salt-rich
+structures that form on the surface of newly frozen sea ice---host
+diverse microbial communities that contribute meaningfully to polar
+biogeochemical cycles, including carbon flux, nutrient recycling, and
+the production of climate-active aerosols {[}ref15{]}. Despite their
+ecological importance, these communities are challenging to study in
+natural settings, where large-scale atmospheric and oceanic dynamics
+confound efforts to isolate the local, deterministic forces governing
+microbial colonization and assembly {[}ref14{]}. Distinguishing
+niche-based selection from stochastic dispersal processes is a central
+question in microbial ecology {[}ref13{]}, yet field studies of sea ice
+are inherently limited in their ability to control for the many
+interacting physical and chemical gradients that develop during ice
+formation. Laboratory-scale simulations offer an alternative: the Roland
+von Glasow Air-Sea-Ice Chamber, a large-scale experimental facility
+capable of generating young sea ice and frost flowers under controlled
+conditions, provides an opportunity to examine microbial colonization
+while minimizing the confounding influence of regional atmospheric and
+oceanic variability.
+
+In this study, we used the Air-Sea-Ice Chamber at the University of
+Grenoble-Alpes to investigate how bacterial and eukaryotic assemblages
+are structured across the distinct physicochemical niches that develop
+within experimentally generated sea ice---frost flowers, brine, the ice
+matrix, and the underlying seawater. Building on prior observations that
+bacterial taxa in sea ice environments often display strong
+niche-specific enrichment {[}ref12{]}, we hypothesized that bacterial
+communities in the chamber system would exhibit significant taxonomic
+partitioning among these habitats, consistent with deterministic
+niche-based selection. We further predicted that this partitioning would
+be evidenced by the emergence of archetypal sea-ice bacterial taxa that
+were not present in the seawater used to seed the experiment. By
+contrast, we anticipated that eukaryotic assemblages would show
+comparatively little variation across the ice profile, reflecting a
+greater role for stochastic colonization processes among these taxa.
+Finally, we expected that enrichment of characteristic sea-ice bacteria
+would be detectable even under conditions of minimal diatom
+representation, which would underscore the robustness of bacterial
+responses to ice-associated physicochemical conditions independent of
+eukaryotic primary production.
+
+To test these hypotheses, we reanalyzed publicly available 16S rRNA gene
+amplicon sequencing data generated from the Air-Sea-Ice Chamber
+experiment (BioProject PRJNA1473294), comprising 45 biological samples
+and 124 sequencing runs spanning the frost flower, brine, ice matrix,
+and seawater niches. Raw sequence reads were processed using the
+microscape pipeline, which incorporates quality filtering, primer
+removal, denoising via DADA2, chimera removal, taxonomic classification
+against the SILVA reference database, and decontamination of likely
+contaminant sequences. The resulting amplicon sequence variant table was
+used to characterize taxonomic composition across niches and to evaluate
+patterns of alpha- and beta-diversity, differential taxon abundance, and
+co-occurrence structure. This approach allowed us to assess, at high
+resolution, the extent to which bacterial and eukaryotic community
+structure in this experimentally controlled sea-ice system reflects
+deterministic niche selection versus stochastic assembly processes.
+
+\subsection{Methods}\label{methods}
+
+\section{Methods}\label{methods-1}
+
+\subsection{Data Acquisition}\label{data-acquisition}
+
+Sequence data analyzed in this study were derived from an experimental
+sea ice mesocosm study conducted using the Roland von Glasow Air-Sea-Ice
+Chamber (University of Grenoble Alpes), designed to isolate local
+microbial colonization dynamics on frost flowers, brine, ice matrix, and
+seawater from confounding regional environmental effects. A total of 45
+samples were processed, corresponding to 124 sequencing runs deposited
+under BioProject PRJNA1473294 in the NCBI Sequence Read Archive (SRA).
+Samples represented air metagenome and three additional sample
+types/environments consistent with the frost flower, brine, ice matrix,
+and seawater niches described in the study design {[}AUTHOR: confirm
+sample-to-environment mapping and per-environment sample counts{]}. Raw
+sequencing reads were retrieved from SRA using standard SRA toolkit
+utilities prior to downstream processing.
+
+\subsection{Sequence Processing
+Pipeline}\label{sequence-processing-pipeline}
+
+Amplicon sequence data were processed using the microscape pipeline,
+which implements an amplicon sequence variant (ASV)-based workflow
+analogous to DADA2-style denoising. Following quality filtering, an
+initial set of 84 samples with sufficient read depth were retained for
+downstream community analysis (out of the total 45 biological
+samples/124 sequencing runs, indicating that multiple runs were merged
+or samples were processed at the run level for this step {[}AUTHOR:
+clarify sample-to-run aggregation strategy{]}). Quality filtering
+removed low-quality and chimeric reads, reducing the initial 860,222
+input reads to 519,769 retained reads, corresponding to an overall
+retention rate of 60.4\%.
+
+Filtered reads were used to construct sequence tables (seqtabs) and,
+following merging and chimera removal, a final ASV table (seqtab\_final)
+was generated. Taxonomic classification of ASVs was performed against
+the SILVA reference database, which is the sole taxonomy database
+employed in this analysis (version not specified in pipeline metadata)
+{[}AUTHOR: specify SILVA release version if known{]}. Classification was
+conducted hierarchically across taxonomic ranks from domain to genus.
+
+\subsection{Analysis Parameters}\label{analysis-parameters}
+
+A total of 162 ASVs were classified using the SILVA database.
+Classification success was high and consistent across upper taxonomic
+ranks, with all 162 ASVs (100\%) assigned at the domain, phylum, and
+class levels. Assignment rates declined marginally at finer resolution,
+with 161 ASVs (99.4\%) classified at order and family levels, and 152
+ASVs (93.8\%) classified at the genus level, reflecting the expected
+reduction in reference database resolution at lower taxonomic ranks.
+
+At the phylum level, the classified community was dominated by
+Pseudomonadota (n = 116 ASVs), followed by Bacteroidota (n = 22),
+Campylobacterota (n = 13), Verrucomicrobiota (n = 4), and Actinomycetota
+(n = 3). These five phyla accounted for the entirety of the top-phylum
+classifications reported by the pipeline.
+
+Following taxonomic assignment, ASV abundance tables were renormalized
+to account for differences in sequencing depth across samples
+(renormalized output category), enabling comparative analysis of
+community composition across sample types. Hierarchical clustering was
+performed on renormalized community data to identify groupings of
+samples or taxa based on compositional similarity (clustering output
+category), and co-occurrence network analysis was conducted to
+characterize potential taxon-taxon associations across the sampled
+niches (network output category). Specific clustering distance metrics,
+linkage methods, and network construction thresholds (e.g., correlation
+cutoffs) were not explicitly reported in the pipeline metadata and are
+therefore not detailed here {[}AUTHOR: provide clustering/network
+parameters if available{]}.
+
+\subsection{Statistical Approaches}\label{statistical-approaches}
+
+Quality control metrics, including read retention rates and per-sample
+sequencing depth, were assessed to ensure data adequacy for downstream
+compositional analyses (quality\_check output category). Taxonomic and
+compositional visualizations (viz output category) were generated to
+support comparison of bacterial community structure across the four
+experimental niches (frost flower, brine, ice matrix, and seawater)
+described in the study. Given the exploratory nature of the pipeline
+outputs provided, specific statistical tests for differential abundance,
+alpha/beta diversity, or niche partitioning (e.g., PERMANOVA, ANOSIM)
+were not explicitly detailed in the available metadata; where such
+analyses were performed, methodological details should be specified
+separately {[}AUTHOR: provide statistical test details, including
+diversity metrics and significance thresholds used to support claims of
+niche-based bacterial partitioning versus stochastic eukaryotic
+community structure{]}.
+
+All bioinformatic processing was performed using the microscape
+pipeline; specific tool versions and package dependencies underlying
+individual pipeline steps (e.g., denoising, chimera removal, clustering
+algorithms) were not specified in the provided outputs and are noted
+here as a limitation of the current methods description {[}AUTHOR:
+provide software version information for full reproducibility{]}.
+
+\subsection{Results}\label{results}
+
+\section{Results}\label{results-1}
+
+\subsection{Sequence Processing and Quality
+Filtering}\label{sequence-processing-and-quality-filtering}
+
+A total of 124 SRA runs derived from 45 samples collected across the
+Roland von Glasow Air-Sea-Ice Chamber experimental system were processed
+through the bioinformatics pipeline. Amplicon sequence variant (ASV)
+inference and quality filtering were applied to 84 samples, yielding an
+initial dataset of 860,222 reads. Following quality filtering, 519,769
+reads were retained, corresponding to a retention rate of 60.4\% (Table
+1). Filtered sequence tables, clustering outputs, and renormalized
+abundance tables were generated as part of the downstream processing
+pipeline (see result categories: filtered, clustering, renormalized,
+seqtab\_final).
+
+\subsection{Taxonomic Classification}\label{taxonomic-classification}
+
+Taxonomic assignment was performed using the SILVA reference database. A
+total of 162 ASVs were classified at the domain, phylum, and class
+levels (162/162, 100\% at each rank). Classification success declined
+marginally at finer taxonomic resolution: 161 of 162 ASVs (99.4\%) were
+classified at the order and family levels, and 152 of 162 ASVs (93.8\%)
+were classified at the genus level (Table 2, Figure 1).
+
+\subsection{Phylum-Level Community
+Composition}\label{phylum-level-community-composition}
+
+Among the 162 classified ASVs, five bacterial phyla accounted for the
+majority of taxonomic assignments (Figure 2). Pseudomonadota was the
+most represented phylum, comprising 116 ASVs (71.6\% of classified
+ASVs), followed by Bacteroidota (22 ASVs, 13.6\%), Campylobacterota (13
+ASVs, 8.0\%), Verrucomicrobiota (4 ASVs, 2.5\%), and Actinomycetota (3
+ASVs, 1.9\%). Together, these five phyla accounted for 158 of the 162
+classified ASVs (97.5\%), with the remaining ASVs (n = 4) distributed
+among less abundant or unresolved phyla.
+
+\subsection{Data Availability and Downstream
+Analyses}\label{data-availability-and-downstream-analyses}
+
+Sequence tables, taxonomic classifications, and diversity network
+outputs are provided in the accompanying supplementary files, organized
+according to the result categories generated by the pipeline (seqtabs,
+taxonomy, network, viz, quality\_check). These outputs form the basis
+for the compositional comparisons across sample types (frost flower,
+brine, ice matrix, and seawater) presented in the following sections.
+
+{[}AUTHOR: Please provide additional quantitative results specific to
+niche-based partitioning across frost flower, brine, ice matrix, and
+seawater sample types, including any statistical comparisons (e.g.,
+diversity indices, differential abundance testing, or ordination results
+such as PCoA/NMDS) to complete this section. The current pipeline output
+summary does not include sample-type-resolved taxonomic or diversity
+comparisons, eukaryotic community composition data, or
+functional/metagenomic annotation results referenced in the study
+abstract.{]}
+
+\subsection{Discussion}\label{discussion}
+
+\section{Discussion}\label{discussion-1}
+
+\subsection{Summary of Main Findings}\label{summary-of-main-findings}
+
+This study applied amplicon-based metagenomic sequencing to samples
+collected from the Roland von Glasow Air-Sea-Ice Chamber, a
+laboratory-scale experimental system designed to isolate the local
+physicochemical drivers of microbial colonization in sea ice
+environments from confounding factors associated with field-based
+studies, such as regional geography and large-scale ocean and
+atmospheric circulation {[}ref11{]}. From 124 SRA runs across 45
+samples, quality filtering and ASV inference yielded 519,769 reads
+(60.4\% retention) from an initial pool of 860,222 reads, and taxonomic
+classification using the SILVA reference database resolved 162 ASVs with
+high confidence at broad taxonomic ranks (100\% classified at domain,
+phylum, and class) and only modest attrition at finer resolution (93.8\%
+classified at genus level).
+
+The phylum-level community composition was dominated by Pseudomonadota
+(71.6\% of classified ASVs), with substantial contributions from
+Bacteroidota (13.6\%) and Campylobacterota (8.0\%), and a minor presence
+of Verrucomicrobiota (2.5\%). This distribution is broadly consistent
+with previously reported bacterial community structures in sea ice and
+related cryospheric environments, where Pseudomonadota (formerly
+Proteobacteria) and Bacteroidota are frequently identified as dominant
+taxa {[}ref10{]}. The recovery of these phyla across the experimental
+sea ice matrix, brine, frost flower, and air/seawater compartments lends
+support to the interpretation---consistent with the study's stated
+findings---that niche-based selection processes structure bacterial
+community assembly during sea ice formation, as evidenced by the
+emergence of taxa not present in the seeding seawater.
+
+\subsection{Comparison with Expected
+Findings}\label{comparison-with-expected-findings}
+
+The high rate of taxonomic classification success at broad ranks (100\%
+at domain/phylum/class) aligns with expectations for well-characterized
+bacterial lineages typically associated with marine and sea ice systems,
+for which the SILVA database maintains comprehensive reference coverage
+{[}ref9{]}. The modest decline in classification success at the genus
+level (93.8\%) likely reflects the known limitations of short amplicon
+reads in resolving fine-scale taxonomic distinctions, particularly among
+less-characterized or environmentally specific lineages that may be
+underrepresented in reference databases (Jurburg, 2025). This pattern is
+consistent with general expectations for amplicon-based surveys of
+environmental bacterial communities rather than indicating any unusual
+feature of this dataset.
+
+The dominance of Pseudomonadota in the classified ASVs is consistent
+with prior reports of sea-ice-associated bacterial assemblages, in which
+taxa within this phylum---including groups associated with psychrophilic
+and halotolerant lifestyles---are frequently enriched during ice
+formation (Quast et al., 2013). The secondary abundance of Bacteroidota,
+a phylum commonly associated with the degradation of complex organic
+matter and frequently detected in sea ice brine and
+particulate-associated niches (Eronen-Rasimus et al., 2015), further
+supports the plausibility of the community structure recovered here. The
+detection of Campylobacterota, historically associated with
+microaerophilic or redox-stratified environments {[}ref5{]}, may reflect
+the presence of localized geochemical gradients within the ice matrix or
+brine channels of the experimental chamber, though the amplicon-based
+approach used here cannot directly confirm the physiological or
+metabolic activity of these taxa.
+
+Notably, the description of this study emphasizes that bacterial
+enrichment in sea ice occurred at a rate comparable to prior field-based
+observations despite minimal diatom representation, and that eukaryotic
+community composition remained relatively stable across sampling
+compartments---an outcome interpreted as reflecting stochastic assembly
+processes for the eukaryotic fraction, in contrast to the niche-based
+selection apparently governing bacterial distribution. This
+bacterial/eukaryotic contrast is an important conceptual result, though
+the taxonomic results presented in this analysis are restricted to the
+bacterial 16S rRNA gene dataset; the eukaryotic community data
+referenced in the study description are not detailed in the taxonomic
+results reported here, and readers should consult accompanying analyses
+for those findings.
+
+\subsection{Broader Context}\label{broader-context}
+
+These results contribute to a growing body of literature examining the
+mechanisms of microbial colonization during sea ice formation, a process
+with implications for polar biogeochemical cycling, primary production,
+and the biological pump in ice-covered oceans {[}ref4{]}. The use of a
+controlled laboratory chamber to simulate sea ice formation represents a
+methodological advance over purely observational field studies, as it
+allows the decoupling of local ecological and physicochemical drivers
+(e.g., brine rejection, salinity gradients, temperature) from
+larger-scale oceanographic and atmospheric influences that typically
+confound field-based interpretations (Kerfahi et al., 2024). The
+recovery of archetypal sea-ice-associated bacterial taxa under these
+controlled conditions, absent from the seeding seawater community,
+provides experimental support for niche-based selection as a structuring
+force in this system, complementing correlative evidence from natural
+sea ice environments {[}ref2{]}.
+
+\subsection{Limitations}\label{limitations}
+
+Several limitations of this study should be acknowledged. First, the
+overall read retention rate following quality filtering (60.4\%)
+indicates that a substantial fraction of the initial sequencing output
+was excluded during processing; while this is not unusual for
+amplicon-based pipelines with stringent quality thresholds, it may have
+reduced sensitivity to detect rare or low-abundance taxa, particularly
+in compartments with lower biomass such as frost flowers or air samples.
+Second, ASV inference and quality filtering were applied to 84 of the
+124 total SRA runs, and it is not clear from the available results
+whether the remaining runs (e.g., additional replicates, alternate
+marker genes, or non-bacterial datasets) were processed through parallel
+or complementary pipelines; this should be clarified in future
+reporting. Third, taxonomic classification was performed using a single
+reference database (SILVA), and classification accuracy---especially at
+the genus level---is inherently constrained by the completeness and
+curation of this database for polar and psychrophilic taxa, which may be
+underrepresented relative to more commonly studied environments. Fourth,
+the amplicon-based approach used here provides taxonomic but not direct
+functional information; while the study describes ``functional
+partitioning'' of bacteria into niches, the results presented in this
+analysis are limited to taxonomic composition, and the functional
+inferences would require complementary metagenomic or metatranscriptomic
+evidence not detailed here. Finally, as with all chamber-based
+experimental systems, some caution is warranted in extrapolating
+findings to natural sea ice environments, given that laboratory
+conditions---while designed to mimic key physicochemical
+gradients---cannot fully replicate the complexity of natural polar
+ecosystems, including their microbial seed banks, trace nutrient
+dynamics, and multi-year environmental variability {[}AUTHOR: additional
+detail on chamber-to-field extrapolation limitations would strengthen
+this discussion{]}.
+
+\subsection{Future Directions}\label{future-directions}
+
+Future work building on these findings could pursue several directions.
+Shotgun metagenomic or metatranscriptomic sequencing would allow direct
+assessment of the functional partitioning hypothesized to underlie
+niche-based bacterial selection, complementing the taxonomic patterns
+reported here. Extending the temporal resolution of sampling within the
+chamber system could help clarify the successional dynamics of bacterial
+colonization during different stages of ice formation and aging.
+Parallel analysis of the eukaryotic community using amplicon markers
+appropriate for protistan or algal taxa (e.g., 18S rRNA) would allow
+more direct testing of the proposed contrast between deterministic
+bacterial assembly and stochastic eukaryotic assembly. Additionally,
+comparative analyses using multiple reference databases (e.g., SILVA
+alongside other curated 16S rRNA databases) could help validate the
+robustness of genus-level classifications, particularly for taxa of
+ecological interest in sea ice systems. Finally, replicating this
+chamber-based experimental approach under varying environmental
+conditions (e.g., temperature, salinity, or nutrient regimes) would help
+establish the generalizability of the niche-based selection patterns
+observed here and clarify the specific environmental variables most
+responsible for structuring bacterial communities during sea ice
+formation.
+
+\subsection{Data Availability}\label{data-availability}
+
+All sequence data are available from the NCBI SRA under accession
+\href{https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1473294}{PRJNA1473294}.
+Analysis code, results, and interactive figures are available in this
+repository. This paper was generated using the
+\href{https://github.com/rec3141/omc-platform}{Open Microbial Community}
+platform.
+
+\subsection*{References}\label{references}
+\addcontentsline{toc}{subsection}{References}
+
+\protect\phantomsection\label{refs}
+
+
+
+
+\end{document}
