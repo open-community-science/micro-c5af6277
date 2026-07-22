@@ -1,0 +1,47 @@
+{
+  "data": [
+    {
+      "type": "bar",
+      "x": [
+        "Pseudomonadota",
+        "Bacteroidota",
+        "Campylobacterota",
+        "Verrucomicrobiota",
+        "Actinomycetota"
+      ],
+      "y": [
+        116,
+        22,
+        13,
+        4,
+        3
+      ],
+      "marker": {
+        "color": "#3498db"
+      },
+      "text": [
+        "116",
+        "22",
+        "13",
+        "4",
+        "3"
+      ],
+      "textposition": "auto"
+    }
+  ],
+  "layout": {
+    "title": "Taxonomic Distribution (Phylum Level)",
+    "xaxis": {
+      "title": "Phylum",
+      "tickangle": -45
+    },
+    "yaxis": {
+      "title": "Number of MAGs"
+    },
+    "template": "plotly_white",
+    "height": 450,
+    "margin": {
+      "b": 120
+    }
+  }
+}
